@@ -1,0 +1,45 @@
+@import './base.css';
+
+body {
+  background-color: #d5e7dd;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: #43c8dd;
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: #ffffff;
+  }
+}
+
+.crest-cell {
+  display: inline-flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.form-box {
+  width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.form-box--W {
+  background-color: #80f380;
+}
+
+.form-box--L {
+  background-color: #ff9f7b;
+}
+
+.form-box--D {
+  background-color: #ffff84;
+}
