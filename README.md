@@ -16,6 +16,8 @@ Copy the `.env.example` file and add the key user `VUE_APP_API_KEY`
 
 !Important: Currently .env is not connected to the APP, so replace YOUR_API_KEY in the `src/services/api.ts` file
 
+When running the code from `localhost`, you will need to allow CORS in your browser to access the API.
+
 ## Project Setup
 
 ```sh
@@ -57,9 +59,9 @@ If no league is chosen, the user can see:
 When the user selects a league from the dropdown, he can now see league specific details:
 - *Archive* - league summary and history of the previous seasons winners
 - *Matches* - all matches for the season in the selected league
-- *Teams* - 
-- *Standings* - 
-- *Scorer* - 
+- *Teams* - all teams under the selected league
+- *Standings* - the standings statistics for the league
+- *Scorer* - the high scorers of the league
 
 In addition, there are a few details pages:
 - *Team profile* - includes details for the team, recent matches, squad list, couch, staff history;
