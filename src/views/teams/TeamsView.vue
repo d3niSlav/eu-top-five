@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import type { VDataTable } from 'vuetify/components'
 
-import apiClient from '@/services/api';
+import apiClient from '@/services/football-data-api';
 import type { Team, TeamsData } from '@/types/types';
 
 type VDataTableHeaders = VDataTable['headers'];

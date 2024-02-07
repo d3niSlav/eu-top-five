@@ -163,6 +163,7 @@ export interface MatchDataFilters {
   permission?: string;
   id?: string;
   status?: STATUS_ENUM;
+  season?: number;
 }
 
 export interface MatchDataResultSet {
@@ -315,4 +316,10 @@ export interface TeamsData {
   filters: TeamFilters;
   count: number;
   teams: Team[];
+}
+
+export interface User {
+  id: string;
+  username: string;
+  favorites?: number[];
 }

@@ -14,9 +14,12 @@ You will need to register for an API KEY.
 
 Copy the `.env.example` file and add the key user `VUE_APP_API_KEY`
 
-!Important: Currently .env is not connected to the APP, so replace YOUR_API_KEY in the `src/services/api.ts` file
+!Important: Currently .env is not connected to the APP, so replace YOUR_API_KEY in the `src/services/football-data-api.ts` file
 
 When running the code from `localhost`, you will need to allow CORS in your browser to access the API.
+
+For running the user authentication and favorites features, you need to fetch and setup the API service:
+[eu-top-five-api](https://github.com/d3niSlav/eu-top-five-api)
 
 ## Project Setup
 

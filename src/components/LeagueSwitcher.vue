@@ -14,51 +14,66 @@ const emblem = computed(() => leaguesList.find(({ code }) => code === leagueCode
 </script>
 
 <template>
-  <div class="league text-right">
-  <v-menu class="switcher text-center">
-    <template v-slot:activator="{ props }">
-      <v-btn
-          color="transparent"
-          v-bind="props"
-          elevation="0"
-          class="mt-1"
-      >
+  <div class="league-navigation">
+    <v-row class="league text-right">
+      <v-col cols="4" class="text-left pl-3">
+        <slot name="top-navigation" />
+      </v-col>
+      <v-col cols="8">
+        <v-menu class="switcher text-center">
+          <template v-slot:activator="{ props }">
+            <v-btn
+                color="transparent"
+                v-bind="props"
+                elevation="0"
+                class="mt-1"
+            >
         <span class="text-capitalize text-white">
           Switch league ▼
         </span>
-      </v-btn>
-    </template>
-    <v-list>
-      <v-list-item
-          v-for="{ code, emblem, name } in leaguesList"
-          :key="code"
-          :value="code"
-          @click.prevent="() => $emit('switch-league', code)"
-      >
-        <v-list-item-title>{{ name }}</v-list-item-title>
-        <v-list-item-media class="pb-2">
-          <v-img :src="emblem" max-height="50"></v-img>
-        </v-list-item-media>
-      </v-list-item>
-      <v-list-item @click.prevent="() => $emit('switch-league', '')">
-        <v-list-item-title>Clear</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-menu>
-  <div class="selected-league" v-if="leagueCode">
-    <div class="league-display pt-1">
-      <v-img :src="emblem" alt="Selected league emblem" max-height="56" />
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+                v-for="{ code, emblem, name } in leaguesList"
+                :key="code"
+                :value="code"
+                @click.prevent="() => $emit('switch-league', code)"
+            >
+              <v-list-item-title>{{ name }}</v-list-item-title>
+              <v-list-item-media class="pb-2">
+                <v-img :src="emblem" max-height="50"></v-img>
+              </v-list-item-media>
+            </v-list-item>
+            <v-list-item @click.prevent="() => $emit('switch-league', '')">
+              <v-list-item-title>Clear</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-col>
+    </v-row>
+    <div class="selected-league" v-if="leagueCode">
+      <div class="league-display pt-1">
+        <v-img :src="emblem" alt="Selected league emblem" max-height="56"/>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
 <style scoped>
-.league {
+.league-navigation {
   position: fixed;
   top: 0;
   width: 100%;
   height: 50px;
+}
+
+.league {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
   background-color: #021b25;
 }
 

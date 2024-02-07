@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { MatchData } from '@/types/types';
-import { useRoute } from 'vue-router';
-import { ALLOWED_LEAGUES } from '@/utils/constants';
 import { ref, onMounted } from 'vue';
-import { Match } from '@/types/types';
-import apiClient from '@/services/api';
+import { useRoute } from 'vue-router';
+
+import apiClient from '@/services/football-data-api';
+import type { MatchData, Match } from '@/types/types';
+import { ALLOWED_LEAGUES } from '@/utils/constants';
 
 const route = useRoute();
 let leagueId = route.params.leagueId;

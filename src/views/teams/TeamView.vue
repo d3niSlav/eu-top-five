@@ -9,7 +9,7 @@ import ScoreCell from '@/components/table-cells/ScoreCell.vue';
 import SeasonCell from '@/components/table-cells/SeasonCell.vue';
 import TeamsCell from '@/components/table-cells/TeamsCell.vue';
 import TeamProfileCard from '@/components/profile-cards/TeamProfileCard.vue';
-import apiClient from '@/services/api';
+import apiClient from '@/services/football-data-api';
 import type { Match, MatchData, MatchDataResultSet, Team } from '@/types/types';
 
 type VDataTableHeaders = VDataTable['headers'];

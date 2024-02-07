@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { VDataTable } from 'vuetify/components';
 
-import apiClient from '@/services/api';
+import apiClient from '@/services/football-data-api';
 import type { Competition, Season, Team } from '@/types/types';
 import { ALLOWED_LEAGUES } from '@/utils/constants';
 

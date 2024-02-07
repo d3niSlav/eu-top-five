@@ -1,15 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import HomeView from '@/views/HomeView.vue';
-import TeamsView from '@/views/teams/TeamsView.vue';
-import TeamView from '@/views/teams/TeamView.vue';
-import PlayerView from '@/views/players/PlayerView.vue';
+import LoginView from '@/views/auth/LoginView.vue';
+import RegisterView from '@/views/auth/RegisterView.vue';
+import LeagueMatchesView from '@/views/leagues/LeagueMatchesView.vue';
+import LeagueTeamsView from '@/views/leagues/LeagueTeamsView.vue';
 import LeagueView from '@/views/leagues/LeagueView.vue';
 import ScorersView from '@/views/leagues/ScorersView.vue';
 import StandingsView from '@/views/leagues/StandingsView.vue';
-import LeagueTeamsView from '@/views/leagues/LeagueTeamsView.vue';
-import LeagueMatchesView from '@/views/leagues/LeagueMatchesView.vue';
 import MatchesView from '@/views/matches/MatchesView.vue';
+import PlayerView from '@/views/players/PlayerView.vue';
+import TeamView from '@/views/teams/TeamView.vue';
+import TeamsView from '@/views/teams/TeamsView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +20,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
     },
     {
       path: '/matches',

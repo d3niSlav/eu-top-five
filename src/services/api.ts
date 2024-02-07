@@ -1,11 +1,18 @@
-import axios, { type AxiosInstance } from "axios";
+import axios, { type AxiosInstance } from 'axios';
 
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: 'https://api.football-data.org/v4/', //process.env.VUE_APP_API_DOMAIN,
-  headers: {
-    "X-Auth-Token": '0e7bd0129748442b995277990a795678', //process.env.VUE_APP_API_KEY,
-  },
+  baseURL: 'http://localhost:4000', // process.env.VUE_APP_USERS_API_DOMAIN,
 });
+
+apiClient.interceptors.request.use(
+  config => {
+    config.headers['Authorization'] = `Bearer ${sessionStorage.getItem('access_token')}`;
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
 
 export default apiClient;

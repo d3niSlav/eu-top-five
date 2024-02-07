@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
-import apiClient from '@/services/api';
+import apiClient from '@/services/football-data-api';
 import type { Match, MatchData } from '@/types/types';
 
 const loading = ref(false);

@@ -3,8 +3,8 @@ import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { VDataTable } from 'vuetify/components'
 
+import apiClient from '@/services/football-data-api';
 import type { LeagueTeamsData, Team } from '@/types/types';
-import apiClient from '@/services/api';
 import { ALLOWED_LEAGUES } from '@/utils/constants';
 
 type VDataTableHeaders = VDataTable['headers'];

@@ -8,8 +8,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // https://vitejs.dev/config/
 export default defineConfig(async ( command, mode) => {
   const env = await loadEnv(mode, process.cwd(), '')
-  console.log(env.VUE_APP_API_DOMAIN);
-  console.log(env.VUE_APP_API_KEY);
 
   const API = {
     VUE_APP_API_DOMAIN: env.VUE_APP_API_DOMAIN,

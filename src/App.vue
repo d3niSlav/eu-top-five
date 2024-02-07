@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRouter } from 'vue-router'
-import { useLeagueStore } from '@/stores/league';
-import LeagueSwitcher from '@/components/LeagueSwitcher.vue';
 import { storeToRefs } from 'pinia';
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+
+import LeagueSwitcher from '@/components/LeagueSwitcher.vue';
+import apiClient from '@/services/api';
+import { useLeagueStore } from '@/stores/league';
+import { useUserStore } from '@/stores/user';
 
 const router = useRouter();
 const store = useLeagueStore();
+const userStore = useUserStore();
 const { leagueCode } = storeToRefs(store);
-
-console.log(leagueCode.value);
+const { user } = storeToRefs(userStore);
 
 const TOP_LEAGUES = [
   { code: 'PL', emblem: 'https://crests.football-data.org/PL.png', name: 'Premier League' },
@@ -26,17 +29,31 @@ const changeLeague = (code?: string) => {
     router.replace({ path: '/' });
   }
 };
+
+const logout = () => {
+  userStore.clearUser();
+  store.setSelectedLeague('');
+  router.replace({ path: '/' });
+};
+
+if (userStore.user?.id) {
+  apiClient.get('/user').then((response) => {
+    const { favorites } = response.data;
+
+    userStore.setFavorites(favorites);
+  });
+}
 </script>
 
 <template>
   <header class="d-flex justify-center w-100">
     <nav>
       <template v-if="leagueCode">
-      <RouterLink :to="`/league/${leagueCode}/matches`">Matches</RouterLink>
-      <RouterLink :to="`/league/${leagueCode}/teams`">Teams</RouterLink>
-      <RouterLink :to="`/league/${leagueCode}/standings`">Standings</RouterLink>
-      <RouterLink :to="`/league/${leagueCode}/scorer`">Scorer</RouterLink>
-      <RouterLink :to="`/league/${leagueCode}`">Archive</RouterLink>
+        <RouterLink :to="`/league/${leagueCode}/matches`">Matches</RouterLink>
+        <RouterLink :to="`/league/${leagueCode}/teams`">Teams</RouterLink>
+        <RouterLink :to="`/league/${leagueCode}/standings`">Standings</RouterLink>
+        <RouterLink :to="`/league/${leagueCode}/scorer`">Scorer</RouterLink>
+        <RouterLink :to="`/league/${leagueCode}`">Archive</RouterLink>
       </template>
       <template v-else>
         <RouterLink to="/matches">Matches</RouterLink>
@@ -53,7 +70,30 @@ const changeLeague = (code?: string) => {
       :leagues-list="TOP_LEAGUES"
       :league-code="store.leagueCode"
       @switch-league="changeLeague"
-  />
+  >
+    <template #top-navigation>
+      <nav class="py-0">
+        <ul class="user-navigation">
+          <li>
+            <router-link to="/">
+              <span v-if="user && user.id">Favorites</span>
+              <span v-else>Home</span>
+            </router-link>
+          </li>
+          <li v-if="user && user.id">
+            <v-btn elevation="0" density="compact" color="transparent" class="logout-btn" @click.prevent="logout">
+              <span class="text-capitalize">Logout</span>
+            </v-btn>
+          </li>
+          <li v-else>
+            <router-link to="/login">
+              Login
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+    </template>
+  </league-switcher>
 </template>
 
 <style scoped>
@@ -95,5 +135,17 @@ nav a:first-of-type {
 
 main {
   margin: 80px auto 65px;
+}
+
+.user-navigation {
+  display: flex;
+  padding-top: 10px;
+  list-style: none;
+  font-size: 16px;
+}
+
+.logout-btn {
+  position: relative;
+  top: -2px;
 }
 </style>
