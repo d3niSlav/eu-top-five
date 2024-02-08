@@ -28,6 +28,12 @@ const login = () => {
     const decoded = jwtDecode<User>(token);
     userStore.setUser(decoded);
 
+    apiClient.get('/user').then((response) => {
+      const { favorites } = response.data;
+
+      userStore.setFavorites(favorites);
+    });
+
     sessionStorage.setItem('access_token', responce.data.access_token);
     router.replace({ path: '/' });
   }).catch((error) => {

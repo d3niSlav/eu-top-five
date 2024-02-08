@@ -6,6 +6,7 @@ import type { VDataTable } from 'vuetify/components'
 import apiClient from '@/services/football-data-api';
 import type { LeagueTeamsData, Team } from '@/types/types';
 import { ALLOWED_LEAGUES } from '@/utils/constants';
+import FavoritesToggle from '@/components/favorites/FavoritesToggle.vue';
 
 type VDataTableHeaders = VDataTable['headers'];
 
@@ -39,6 +40,11 @@ const headers: VDataTableHeaders = [
   {
     key: 'squad',
     title: 'Squad size',
+  },
+  {
+    key: 'favorites',
+    title: '',
+    sortable: false,
   },
 ];
 
@@ -125,6 +131,9 @@ watch(season, async (newSeason, oldValue) => {
         </template>
         <template v-slot:[`item.squad`]="{item}">
           <p>{{ item.squad ? item.squad.length : 'N/A' }}</p>
+        </template>
+        <template v-slot:[`item.favorites`]="{item}">
+          <favorites-toggle :id="item.id" />
         </template>
         <template v-slot:expanded-row="{ columns, item }">
           <tr>
