@@ -11,7 +11,7 @@ const { score, status } = defineProps<ScoreCellProps>()
 const {
   fullTime,
   halfTime,
-} = score;
+} = score || {};
 </script>
 
 <template>

@@ -19,6 +19,7 @@ const playerId = route.params.playerId;
 const RESULTS = {
   HOME_TEAM: 'W',
   AWAY_TEAM: 'L',
+  DRAW: 'D',
 };
 
 const itemsPerPage = ref(10);
@@ -33,16 +34,19 @@ const headers: VDataTableHeaders = [
   {
     key: 'competition',
     title: 'Competition',
+    sortable: false,
     //todo sort
   },
   {
     key: 'season',
     title: 'Season',
+    sortable: false,
     //todo sort
   },
   {
     key: 'teams',
     title: 'Teams',
+    sortable: false,
   },
   {
     key: 'score',
@@ -53,6 +57,7 @@ const headers: VDataTableHeaders = [
   {
     key: 'status',
     title: 'Status',
+    sortable: false,
     //todo sort
   },
   {
